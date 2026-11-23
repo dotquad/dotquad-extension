@@ -56,7 +56,8 @@ async function toggleGradeOnIcon(event: Event) {
   await saveSettings({ gradeOnIcon: false });
   for (const tab of await browser.tabs.query({}))
     if (tab.id !== undefined) await browser.action.setBadgeText({ tabId: tab.id, text: "" });
-  await browser.permissions.remove({ permissions: ["tabs"] });
+  // Dev builds require "tabs", and a required permission can't be removed.
+  await browser.permissions.remove({ permissions: ["tabs"] }).catch(() => {});
 }
 </script>
 
