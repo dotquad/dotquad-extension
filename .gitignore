@@ -1,0 +1,9 @@
+node_modules
+dist
+coverage
+*.log
+.DS_Store
+.vitepress/cache/
+.output
+.wxt
+web-ext.config.ts
