@@ -7,6 +7,16 @@ export default defineConfig({
   imports: false,
   // Manifest V3 everywhere, Firefox included (the action and session storage APIs it uses).
   manifestVersion: 3,
+  hooks: {
+    // `wxt dev` adds "tabs" to the required permissions for reloading, and Chrome warns when a
+    // permission is both required and optional. Drop the optional copy when that happens.
+    "build:manifestGenerated": (_wxt, manifest) => {
+      const required = new Set(manifest.permissions ?? []);
+      manifest.optional_permissions = manifest.optional_permissions?.filter(
+        (p) => !required.has(p),
+      );
+    },
+  },
   manifest: ({ browser }) => ({
     name: "Dotquad",
     description:
