@@ -35,13 +35,27 @@ Without a key, the extension uses Dotquad's keyless `/ext` routes, limited per a
 
 ```sh
 npm install
-npm run dev            # Chrome with the extension loaded
-npm run dev:firefox
+npm run dev            # builds .output/chrome-mv3-dev and rebuilds on every change
+npm run dev:firefox    # the same for Firefox, which usually opens with the extension loaded
 npm test               # unit tests
-npm run build          # .output/chrome-mv3 (also works in Edge)
-npm run build:firefox  # .output/firefox-mv3
-npm run zip && npm run zip:firefox   # store uploads
 ```
+
+**Load it in Chrome or Edge.** Current Chrome no longer lets tools load extensions for you, so do it once while `npm run dev` runs:
+
+1. Open `chrome://extensions` (Edge: `edge://extensions`) and turn on **Developer mode**.
+2. Click **Load unpacked** and choose `.output/chrome-mv3-dev`. In the macOS file picker, ⌘⇧G takes a typed path.
+3. Pin **Dotquad** from the puzzle-piece menu.
+
+Code changes rebuild and reload it while `npm run dev` runs. For a one-off build instead, `npm run build` and load `.output/chrome-mv3`.
+
+**Load it in Firefox** if it doesn't open by itself: `about:debugging#/runtime/this-firefox`, **Load Temporary Add-on**, and choose `.output/firefox-mv3-dev/manifest.json`.
+
+## Release
+
+1. Add the changes under `## [Unreleased]` in [CHANGELOG.md](CHANGELOG.md), then move them under a new version heading.
+2. `npm version patch` (or `minor`, `major`) to bump `package.json` and tag, then `git push --follow-tags`.
+3. The tag runs [release.yml](.github/workflows/release.yml): checks, tests, then a GitHub release with the Chrome, Firefox and sources zips.
+4. Upload those zips to the stores by hand, using [store/listing.md](store/listing.md).
 
 Built with [WXT](https://wxt.dev), Vue 3 and TypeScript, on [`@dotquad/net`](https://github.com/dotquad/net) (API client, query detection, subnet math) and [`@dotquad/tokens`](https://github.com/dotquad/tokens) (colors, type and icons). Safari gets the extension inside the Dotquad Apple app.
 

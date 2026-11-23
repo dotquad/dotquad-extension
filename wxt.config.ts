@@ -23,7 +23,16 @@ export default defineConfig({
     host_permissions: ["https://api.dotquad.app/*"],
     action: { default_title: "Dotquad" },
     ...(browser === "firefox"
-      ? { browser_specific_settings: { gecko: { id: "extension@dotquad.app" } } }
+      ? {
+          browser_specific_settings: {
+            gecko: {
+              id: "extension@dotquad.app",
+              // What leaves the browser, as addons.mozilla.org asks: the domains you grade and
+              // the links you check (and, only with "Grade on the icon", every site you open).
+              data_collection_permissions: { required: ["browsingActivity"] },
+            },
+          },
+        }
       : {}),
   }),
 });
