@@ -53,6 +53,8 @@ Chrome and Edge: 1280 × 800 (or 640 × 400). Firefox: any size, at least 1280 w
 
 Chrome also asks for a 440 × 280 promo tile: the Dotquad mark on Ink (`#0b1220`) with "Grade any site. Check any link." in Space Grotesk.
 
+**Store icon:** [store-icon-128.png](store-icon-128.png), the same as the extension's 128 px icon. Don't edit it here: it's generated with the other icon sizes from the masters in the Dotquad design folder (`design/brand/extension-icon/`).
+
 ## Chrome Web Store: privacy practices
 
 **Single purpose:** Shows network information about websites, links, IP addresses and domains the user chooses, and the user's own IP address, using the Dotquad API.
@@ -63,7 +65,7 @@ Chrome also asks for a 440 × 280 promo tile: the Dotquad mark on Ink (`#0b1220`
 | -------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | `activeTab`                      | Reads the current tab's address when the user opens the popup, so "Grade this site" knows which domain to grade. |
 | `contextMenus`                   | Adds "Is this link safe?" for links and "Look up on Dotquad" for selected text.                                  |
-| `storage`                        | Keeps the user's settings and short-lived answer caches in session storage.                                      |
+| `storage`                        | Keeps the user's settings in local storage, and short-lived answer caches in session storage.                    |
 | `sidePanel`                      | Shows right-click results in the side panel.                                                                     |
 | Host `https://api.dotquad.app/*` | The Dotquad API, the only server the extension talks to.                                                         |
 | `tabs` (optional)                | Asked for only if the user turns on "Grade on the icon", to read each tab's address and show its grade.          |
