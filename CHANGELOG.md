@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-24
+
+### Changed
+
+- New icon: a globe with an orange location dot on a dark rounded square, in place of the Dotquad "d".
+
 ## [0.1.0] - 2026-11-23
 
 ### Added
