@@ -65,18 +65,18 @@ Upload `dotquad-extension-<version>-chrome.zip`. The name ("Dotquad"), the summa
 
 **Graphic assets:**
 
-| Field              | File                                                                                                                                                                       | Required                                                    |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| Store icon         | [store-icon-128.png](store-icon-128.png)                                                                                                                                   | Yes                                                         |
-| Global promo video | The full promo's YouTube link: upload `brand/video/dotquad-extension-promo-1080p60.mp4` from Dotquad's brand repo (steps in `brand/video/extension-promo/README.md` there) | No                                                          |
-| Screenshots        | [screenshots/](screenshots/), all five, in this order:                                                                                                                     | At least 1                                                  |
-|                    | 1. `1-popup-grade.png`: the popup with your IP and dotquad.app graded A                                                                                                    |                                                             |
-|                    | 2. `2-link-check.png`: "Is this link safe?" finding warning signs in `https://dotquad.app@example.com`, in an email                                                        |                                                             |
-|                    | 3. `3-ip-lookup.png`: "Look up on Dotquad" on a selected `1.1.1.1`                                                                                                         |                                                             |
-|                    | 4. `4-cidr.png`: the subnet math for a selected `198.51.100.0/22`                                                                                                          |                                                             |
-|                    | 5. `5-settings.png`: Settings, with "Grade on the icon" and what it sends                                                                                                  |                                                             |
-| Small promo tile   | [promo-small-440x280.png](promo-small-440x280.png)                                                                                                                         | No, but listings without one are shown after those with one |
-| Marquee promo tile | [promo-marquee-1400x560.png](promo-marquee-1400x560.png)                                                                                                                   | No, but needed to be featured                               |
+| Field              | File                                                                                                                | Required                                                    |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| Store icon         | [store-icon-128.png](store-icon-128.png)                                                                            | Yes                                                         |
+| Global promo video | `https://youtu.be/gRA5QD9g2cE` (the full promo, 37 s; made in Dotquad's brand repo, `brand/video/extension-promo/`) | No                                                          |
+| Screenshots        | [screenshots/](screenshots/), all five, in this order:                                                              | At least 1                                                  |
+|                    | 1. `1-popup-grade.png`: the popup with your IP and dotquad.app graded A                                             |                                                             |
+|                    | 2. `2-link-check.png`: "Is this link safe?" finding warning signs in `https://dotquad.app@example.com`, in an email |                                                             |
+|                    | 3. `3-ip-lookup.png`: "Look up on Dotquad" on a selected `1.1.1.1`                                                  |                                                             |
+|                    | 4. `4-cidr.png`: the subnet math for a selected `198.51.100.0/22`                                                   |                                                             |
+|                    | 5. `5-settings.png`: Settings, with "Grade on the icon" and what it sends                                           |                                                             |
+| Small promo tile   | [promo-small-440x280.png](promo-small-440x280.png)                                                                  | No, but listings without one are shown after those with one |
+| Marquee promo tile | [promo-marquee-1400x560.png](promo-marquee-1400x560.png)                                                            | No, but needed to be featured                               |
 
 The promo tiles follow Google's guidance: no headline text, the whole area filled, saturated color on dark, well-defined edges, and more than a screenshot (the logo and the icon's globe, with the dot over Raleigh, NC; the marquee adds the real popup).
 
