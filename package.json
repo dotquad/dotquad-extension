@@ -1,6 +1,6 @@
 {
   "name": "dotquad-extension",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Dotquad for Chrome, Edge and Firefox: grade the site you're on, check links before you click them, look up any IP or domain, and see your own IP and VPN status.",
   "license": "SEE LICENSE IN LICENSE",
