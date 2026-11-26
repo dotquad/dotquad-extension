@@ -2,7 +2,7 @@
 
 Grade the site you're on, check links before you click them, look up any IP address or domain, and see your own IP and VPN status. Results link to the full tools on [dotquad.app](https://dotquad.app).
 
-Not in the stores yet.
+Get it from the [Chrome Web Store](https://chromewebstore.google.com/detail/dotquad/angndblbiakjggdcibejljiidgcnekmj). Edge Add-ons and Firefox Add-ons are coming soon.
 
 ## What it does
 
