@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-11-27
+
 ### Changed
 
 - Firefox: needs Firefox 140 or later, the first version that shows the data collection consent at install, as addons.mozilla.org requires.
