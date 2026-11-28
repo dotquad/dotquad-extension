@@ -325,6 +325,8 @@ It's the extension section of the site's [privacy policy](https://dotquad.app/pr
 > No sign-in or test account is needed; every feature works without an API key. To test: open the toolbar popup on any site and click "Grade this site"; right-click any link and choose "Is this link safe?"; select an IP address on a page, right-click it and choose "Look up on Dotquad". Results open in the sidebar. The extension only talks to https://api.dotquad.app and sends nothing until the user opens the popup or uses the right-click menu. The optional `tabs` permission is requested only when the user turns on "Grade on the icon" in Settings.
 >
 > To build from the source package: Node 22 or later, then `npm ci` and `npm run zip:firefox`. The output is in `.output/`.
+>
+> The innerHTML warning in `chunks/_plugin-vue_export-helper-*.js` is Vue's runtime (static template insertion and v-html handling). The extension's own code never sets innerHTML or uses v-html, and no remote content is rendered as HTML.
 
 Then click "Submit Version".
 
