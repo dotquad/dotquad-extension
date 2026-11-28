@@ -134,7 +134,7 @@ None needed: there's no sign-in, and every feature works without an API key.
 
 ## Edge Add-ons
 
-Submit in [Partner Center](https://partner.microsoft.com/dashboard/microsoftedge), following Microsoft's [publishing guide](https://learn.microsoft.com/en-us/microsoft-edge/extensions/publish/publish-extension). Most answers are the same as Chrome's. Review takes up to 7 business days.
+Submit in [Partner Center](https://partner.microsoft.com/dashboard/microsoftedge), following Microsoft's [publishing guide](https://learn.microsoft.com/en-us/microsoft-edge/extensions/publish/publish-extension). Every value is written out below. Review takes up to 7 business days.
 
 ### Account (once, before the first submission)
 
@@ -144,7 +144,12 @@ Submit in [Partner Center](https://partner.microsoft.com/dashboard/microsoftedge
 
 ### Packages
 
-Click "Create new extension", then upload `dotquad-extension-<version>-chrome.zip`. Edge uses the Chrome build as is. The name and the short description come from its manifest, as on Chrome (see [Package](#package)), and can only change with a new package.
+Click "Create new extension", then upload `dotquad-extension-<version>-chrome.zip`. Edge uses the Chrome build as is. The name and the short description come from its manifest and can only change with a new package:
+
+| Manifest field    | Value                                                                                                                  |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Extension name    | Dotquad                                                                                                                |
+| Short description | Grade the site you're on, check links before you click them, look up any IP or domain, and see your IP and VPN status. |
 
 ### Availability
 
@@ -164,30 +169,68 @@ Click "Create new extension", then upload `dotquad-extension-<version>-chrome.zi
 
 ### Privacy
 
-Copy Chrome's answers from [Privacy](#privacy). Microsoft checks them against what the extension does, so keep them identical:
+Microsoft checks these against what the extension does. They match Chrome's answers word for word; if one changes, change both.
 
-| Field                     | Value                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------- |
-| Single purpose            | Chrome's single purpose statement                                                                        |
-| Permission justifications | Chrome's permission justifications table, one box per permission                                         |
-| Remote code               | "No, I am not using remote code"                                                                         |
-| Data usage                | Web history checked, nothing else. Use Chrome's wording if a box asks for details                        |
-| Disclosures               | Certify all of them: not sold, not used for unrelated purposes, not used for creditworthiness or lending |
-| Privacy policy URL        | `https://dotquad.app/privacy/#extension`                                                                 |
+**Single purpose description:** Shows network information about websites, links, IP addresses and domains the user chooses, and the user's own IP address, using the Dotquad API.
+
+**Permission justification** (one box per permission):
+
+| Permission                       | Justification                                                                                                    |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `activeTab`                      | Reads the current tab's address when the user opens the popup, so "Grade this site" knows which domain to grade. |
+| `contextMenus`                   | Adds "Is this link safe?" for links and "Look up on Dotquad" for selected text.                                  |
+| `storage`                        | Keeps the user's settings in local storage, and short-lived answer caches in session storage.                    |
+| `sidePanel`                      | Shows right-click results in the side panel.                                                                     |
+| Host `https://api.dotquad.app/*` | The Dotquad API, the only server the extension talks to.                                                         |
+| `tabs` (optional)                | Asked for only if the user turns on "Grade on the icon", to read each tab's address and show its grade.          |
+
+**Are you using remote code?** "No, I am not using remote code." All code ships in the package.
+
+**Data usage**, "What user data do you plan to collect from users now or in the future?":
+
+- **Web history:** checked. The domain of a site the user grades, links the user checks and, only with "Grade on the icon" on, the domain of each site opened. Sent to the Dotquad API to answer the request; not logged or stored there.
+- **Location:** not checked. The extension shows where the user's IP address appears to be, but doesn't collect or send location; the API sees the IP address because every request carries it.
+- Nothing else is checked.
+
+**"I certify that the following disclosures are true":** check all of them. The data isn't sold to third parties, isn't used or transferred for purposes unrelated to the single purpose, and isn't used for creditworthiness or lending.
+
+**Privacy policy URL:** `https://dotquad.app/privacy/#extension`
 
 ### Store listings
 
 Add English (United States), then fill it in:
 
-| Field                  | Value                                                                                             | Required |
-| ---------------------- | ------------------------------------------------------------------------------------------------- | -------- |
-| Description            | Chrome's [description](#store-listing), pasted the same way (Edge needs 250 to 10,000 characters) | Yes      |
-| Extension logo         | [store-icon-128.png](store-icon-128.png). 128 × 128 is Edge's minimum; it recommends 300 × 300    | Yes      |
-| Small promotional tile | [promo-small-440x280.png](promo-small-440x280.png)                                                | No       |
-| Large promotional tile | [promo-marquee-1400x560.png](promo-marquee-1400x560.png)                                          | No       |
-| Screenshots            | [screenshots/](screenshots/), all five, in Chrome's order (Edge allows up to 6)                   | No       |
-| YouTube video URL      | `https://youtu.be/gRA5QD9g2cE`, the same promo as on Chrome                                       | No       |
-| Search terms           | `IP address`, `VPN`, `link checker`, `phishing`, `DNS`, `WHOIS`, `subnet calculator`              | No       |
+| Field                  | Value                                                                                                                                                    | Required |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| Description            | The text below (Edge needs 250 to 10,000 characters)                                                                                                     | Yes      |
+| Extension logo         | [store-icon-128.png](store-icon-128.png). 128 × 128 is Edge's minimum; it recommends 300 × 300                                                           | Yes      |
+| Small promotional tile | [promo-small-440x280.png](promo-small-440x280.png)                                                                                                       | No       |
+| Large promotional tile | [promo-marquee-1400x560.png](promo-marquee-1400x560.png)                                                                                                 | No       |
+| Screenshots            | [screenshots/](screenshots/), all five: `1-popup-grade.png`, `2-link-check.png`, `3-ip-lookup.png`, `4-cidr.png`, `5-settings.png` (Edge allows up to 6) | No       |
+| YouTube video URL      | `https://youtu.be/gRA5QD9g2cE`, the same promo as on Chrome                                                                                              | No       |
+| Search terms           | `IP address`, `VPN`, `link checker`, `phishing`, `DNS`, `WHOIS`, `subnet calculator`                                                                     | No       |
+
+**Description** (paste without the `>` marks; plain text, no Markdown):
+
+> Grade any site. Check any link. Dotquad puts its network tools where you browse.
+>
+> **Your IP and VPN status.** Open the popup to see your public IP address, where it appears to be, its network, and whether it belongs to a VPN, proxy, Tor or a hosting provider.
+>
+> **Grade this site.** One click grades the site you're on from A+ to F: HTTPS and security headers, email authentication, DNS, DNSSEC and registration. It also shows where the site is hosted.
+>
+> **Is this link safe?** Right-click a link to see its warning signs before you open it: a hidden destination, a look-alike brand name, where its redirects really go, how old the sites are, and whether the certificate is valid. It never says a link is "safe": no warning signs isn't a guarantee.
+>
+> **Look up anything.** Select an IP address, domain, ASN or CIDR range and right-click it. Subnet math runs in your browser.
+>
+> Every answer names the data source behind it, and links to the full tool on dotquad.app.
+>
+> **Private by design.** It sends nothing until you open it or use its right-click menu. No content scripts, no access to the pages you visit, no analytics, no tracking. Dotquad keeps no logs of what you look up. "Grade on the icon", which grades every tab, is off until you turn it on.
+>
+> Free, with no account. Add a free Dotquad API key in Settings if you use it a lot.
+>
+> The source code is public: https://github.com/dotquad/dotquad-extension
+>
+> Screenshots include text from Wikipedia (CC BY-SA 4.0).
 
 Search terms aren't shown to users. Edge allows up to 7 terms of 30 characters each, and 21 words in all. These use 10.
 
@@ -227,7 +270,7 @@ The minimum Firefox version (140) and the add-on ID (`extension@dotquad.app`) co
 | Name                        | Dotquad                                                                                                                                        |
 | Add-on URL                  | `dotquad`, so the listing is `https://addons.mozilla.org/firefox/addon/dotquad/`                                                               |
 | Summary                     | Grade the site you're on, check links before you click them, look up any IP or domain, and see your IP and VPN status. (118 of 250 characters) |
-| Description                 | Chrome's [description](#store-listing), pasted the same way                                                                                    |
+| Description                 | The text below                                                                                                                                 |
 | This add-on is experimental | Not checked                                                                                                                                    |
 | Requires payment            | Not checked. The extension is free, and the optional API key is free too                                                                       |
 | Firefox categories          | Privacy & Security, and Web Development (up to 2)                                                                                              |
@@ -236,6 +279,28 @@ The minimum Firefox version (140) and the add-on ID (`extension@dotquad.app`) co
 | License                     | MIT License                                                                                                                                    |
 | Privacy policy              | Checked. Paste the text below                                                                                                                  |
 | Notes for reviewers         | The text below                                                                                                                                 |
+
+**Description** (paste without the `>` marks; plain text, no Markdown):
+
+> Grade any site. Check any link. Dotquad puts its network tools where you browse.
+>
+> **Your IP and VPN status.** Open the popup to see your public IP address, where it appears to be, its network, and whether it belongs to a VPN, proxy, Tor or a hosting provider.
+>
+> **Grade this site.** One click grades the site you're on from A+ to F: HTTPS and security headers, email authentication, DNS, DNSSEC and registration. It also shows where the site is hosted.
+>
+> **Is this link safe?** Right-click a link to see its warning signs before you open it: a hidden destination, a look-alike brand name, where its redirects really go, how old the sites are, and whether the certificate is valid. It never says a link is "safe": no warning signs isn't a guarantee.
+>
+> **Look up anything.** Select an IP address, domain, ASN or CIDR range and right-click it. Subnet math runs in your browser.
+>
+> Every answer names the data source behind it, and links to the full tool on dotquad.app.
+>
+> **Private by design.** It sends nothing until you open it or use its right-click menu. No content scripts, no access to the pages you visit, no analytics, no tracking. Dotquad keeps no logs of what you look up. "Grade on the icon", which grades every tab, is off until you turn it on.
+>
+> Free, with no account. Add a free Dotquad API key in Settings if you use it a lot.
+>
+> The source code is public: https://github.com/dotquad/dotquad-extension
+>
+> Screenshots include text from Wikipedia (CC BY-SA 4.0).
 
 **Privacy policy** (paste without the `>` marks):
 
@@ -267,20 +332,20 @@ Then click "Submit Version".
 
 After submitting, open the add-on's "Edit Product Page" and add what the first form didn't ask for:
 
-| Field       | Value                                                                                                                        |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| Icon        | Taken from the manifest. Upload [store-icon-128.png](store-icon-128.png) only if it doesn't show                             |
-| Screenshots | [screenshots/](screenshots/), all five, in Chrome's order, with the captions below. No promo tiles: Firefox doesn't use them |
-| Homepage    | `https://dotquad.app/apps/`                                                                                                  |
-| Tags        | Optional. Pick the security and privacy ones from Mozilla's list                                                             |
+| Field       | Value                                                                                                                       |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Icon        | Taken from the manifest. Upload [store-icon-128.png](store-icon-128.png) only if it doesn't show                            |
+| Screenshots | [screenshots/](screenshots/), all five, in the order below, each with its caption. No promo tiles: Firefox doesn't use them |
+| Homepage    | `https://dotquad.app/apps/`                                                                                                 |
+| Tags        | Optional. Pick the security and privacy ones from Mozilla's list                                                            |
 
-Screenshot captions:
+Screenshots and their captions, in order:
 
-1. Your IP address, and a grade for the site you're on.
-2. "Is this link safe?" finds the warning signs in a link before you open it.
-3. Look up any IP address you select on a page.
-4. Subnet math for a selected CIDR range, worked out in your browser.
-5. Settings, with "Grade on the icon" and what it sends.
+1. `1-popup-grade.png`: Your IP address, and a grade for the site you're on.
+2. `2-link-check.png`: "Is this link safe?" finds the warning signs in a link before you open it.
+3. `3-ip-lookup.png`: Look up any IP address you select on a page.
+4. `4-cidr.png`: Subnet math for a selected CIDR range, worked out in your browser.
+5. `5-settings.png`: Settings, with "Grade on the icon" and what it sends.
 
 ### Data collection
 
