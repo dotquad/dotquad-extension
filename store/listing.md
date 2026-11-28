@@ -11,7 +11,7 @@ Upload the zips from the version's [GitHub release](https://github.com/dotquad/d
 | Package                        | `dotquad-extension-<version>-chrome.zip`                                        | Chrome, Edge                                |
 |                                | `dotquad-extension-<version>-firefox.zip`, and `-sources.zip` when asked        | Firefox                                     |
 | Store icon, 128 × 128          | [store-icon-128.png](store-icon-128.png)                                        | Chrome (also inside the zip), Edge, Firefox |
-| Screenshots, 1280 × 800        | [screenshots/](screenshots/), `1-popup-grade.png` to `5-settings.png`, in order | Chrome (up to 5), Edge (up to 10), Firefox  |
+| Screenshots, 1280 × 800        | [screenshots/](screenshots/), `1-popup-grade.png` to `5-settings.png`, in order | Chrome (up to 5), Edge (up to 6), Firefox   |
 | Small promo tile, 440 × 280    | [promo-small-440x280.png](promo-small-440x280.png)                              | Chrome, Edge                                |
 | Marquee promo tile, 1400 × 560 | [promo-marquee-1400x560.png](promo-marquee-1400x560.png)                        | Chrome, Edge                                |
 
@@ -134,11 +134,154 @@ None needed: there's no sign-in, and every feature works without an API key.
 
 ## Edge Add-ons
 
-[Partner Center](https://partner.microsoft.com/dashboard/microsoftedge) takes the Chrome zip and the Chrome copy as is: description, category (Developer tools), screenshots, both promo tiles, store icon, privacy policy URL, homepage and support URLs. Edge also asks for a search terms list (optional): `IP address, VPN, link checker, phishing, DNS, WHOIS, subnet calculator`.
+Submit in [Partner Center](https://partner.microsoft.com/dashboard/microsoftedge), following Microsoft's [publishing guide](https://learn.microsoft.com/en-us/microsoft-edge/extensions/publish/publish-extension). Most answers are the same as Chrome's. Review takes up to 7 business days.
+
+### Account (once, before the first submission)
+
+- **Program:** register for the Microsoft Edge program in Partner Center.
+- **Publisher display name:** BinaryNoir Studios, as on Chrome.
+- **Contact email:** an address you check. Microsoft sends review results there.
+
+### Packages
+
+Click "Create new extension", then upload `dotquad-extension-<version>-chrome.zip`. Edge uses the Chrome build as is. The name and the short description come from its manifest, as on Chrome (see [Package](#package)), and can only change with a new package.
+
+### Availability
+
+| Field      | Value                                      |
+| ---------- | ------------------------------------------ |
+| Visibility | Public                                     |
+| Markets    | All markets (the default), future ones too |
+
+### Properties
+
+| Field                   | Value                                                 |
+| ----------------------- | ----------------------------------------------------- |
+| Category                | Developer tools                                       |
+| Website                 | `https://dotquad.app/apps/`                           |
+| Support contact details | `https://github.com/dotquad/dotquad-extension/issues` |
+| Mature content          | Not checked                                           |
+
+### Privacy
+
+Copy Chrome's answers from [Privacy](#privacy). Microsoft checks them against what the extension does, so keep them identical:
+
+| Field                     | Value                                                                                                    |
+| ------------------------- | -------------------------------------------------------------------------------------------------------- |
+| Single purpose            | Chrome's single purpose statement                                                                        |
+| Permission justifications | Chrome's permission justifications table, one box per permission                                         |
+| Remote code               | "No, I am not using remote code"                                                                         |
+| Data usage                | Web history checked, nothing else. Use Chrome's wording if a box asks for details                        |
+| Disclosures               | Certify all of them: not sold, not used for unrelated purposes, not used for creditworthiness or lending |
+| Privacy policy URL        | `https://dotquad.app/privacy/#extension`                                                                 |
+
+### Store listings
+
+Add English (United States), then fill it in:
+
+| Field                  | Value                                                                                             | Required |
+| ---------------------- | ------------------------------------------------------------------------------------------------- | -------- |
+| Description            | Chrome's [description](#store-listing), pasted the same way (Edge needs 250 to 10,000 characters) | Yes      |
+| Extension logo         | [store-icon-128.png](store-icon-128.png). 128 × 128 is Edge's minimum; it recommends 300 × 300    | Yes      |
+| Small promotional tile | [promo-small-440x280.png](promo-small-440x280.png)                                                | No       |
+| Large promotional tile | [promo-marquee-1400x560.png](promo-marquee-1400x560.png)                                          | No       |
+| Screenshots            | [screenshots/](screenshots/), all five, in Chrome's order (Edge allows up to 6)                   | No       |
+| YouTube video URL      | `https://youtu.be/gRA5QD9g2cE`, the same promo as on Chrome                                       | No       |
+| Search terms           | `IP address`, `VPN`, `link checker`, `phishing`, `DNS`, `WHOIS`, `subnet calculator`              | No       |
+
+Search terms aren't shown to users. Edge allows up to 7 terms of 30 characters each, and 21 words in all. These use 10.
+
+### Submit
+
+Click "Publish". In **Notes for certification**, paste:
+
+> No sign-in or test account is needed; every feature works without an API key. To test: open the toolbar popup on any site and click "Grade this site"; right-click any link and choose "Is this link safe?"; select an IP address on a page, right-click it and choose "Look up on Dotquad". The extension only talks to https://api.dotquad.app and sends nothing until the user opens the popup or uses the right-click menu. The optional `tabs` permission is requested only when the user turns on "Grade on the icon" in Settings.
+
+For later versions, say what changed, in the words of the changelog.
 
 ## Firefox Add-ons
 
-- **Package:** `-firefox.zip`. The build is bundled, so also upload `-sources.zip` when asked. Build instructions for reviewers: "Node 22 or later. `npm ci`, then `npm run zip:firefox`. The output is in `.output/`."
-- **Listing:** the same name, summary and description; category Privacy & Security; the store icon and screenshots (no promo tiles); homepage `https://dotquad.app/apps/`; support site `https://github.com/dotquad/dotquad-extension/issues` and support email `support@dotquad.app`; privacy policy `https://dotquad.app/privacy/#extension`.
-- **Data collection:** the manifest declares `browsingActivity` as required (`data_collection_permissions`), matching "Web history" above.
-- **Notes to reviewer:** "The extension only talks to https://api.dotquad.app. It sends nothing until the user opens the popup or uses the right-click menu. The optional `tabs` permission is requested only when the user turns on 'Grade on the icon' in Settings."
+Submit in the [Developer Hub](https://addons.mozilla.org/developers/), following Mozilla's [submission guide](https://extensionworkshop.com/documentation/publish/submitting-an-add-on/). Signing is usually quick. A person may review it before or after it goes live.
+
+### Account (once, before the first submission)
+
+- **Two-step authentication:** turn it on. The Developer Hub asks for it before the first submission.
+- **Display name:** BinaryNoir Studios, as on Chrome.
+- **Agreement:** accept the Firefox Add-on Distribution Agreement and the review policies.
+
+### Upload
+
+| Step                 | Value                                                                                                        |
+| -------------------- | ------------------------------------------------------------------------------------------------------------ |
+| How to distribute    | On this site                                                                                                 |
+| Upload               | `dotquad-extension-<version>-firefox.zip`                                                                    |
+| Compatible platforms | Firefox only. Untick Firefox for Android: it has no right-click menu or sidebar for the extension to use     |
+| Source code          | Yes. Upload `dotquad-extension-<version>-sources.zip`. The package is built and bundled, so Mozilla needs it |
+
+The minimum Firefox version (140) and the add-on ID (`extension@dotquad.app`) come from the manifest.
+
+### Describe add-on
+
+| Field                       | Value                                                                                                                                          |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name                        | Dotquad                                                                                                                                        |
+| Add-on URL                  | `dotquad`, so the listing is `https://addons.mozilla.org/firefox/addon/dotquad/`                                                               |
+| Summary                     | Grade the site you're on, check links before you click them, look up any IP or domain, and see your IP and VPN status. (118 of 250 characters) |
+| Description                 | Chrome's [description](#store-listing), pasted the same way                                                                                    |
+| This add-on is experimental | Not checked                                                                                                                                    |
+| Requires payment            | Not checked. The extension is free, and the optional API key is free too                                                                       |
+| Firefox categories          | Privacy & Security, and Web Development (up to 2)                                                                                              |
+| Support email               | `support@dotquad.app`                                                                                                                          |
+| Support website             | `https://github.com/dotquad/dotquad-extension/issues`                                                                                          |
+| License                     | MIT License                                                                                                                                    |
+| Privacy policy              | Checked. Paste the text below                                                                                                                  |
+| Notes for reviewers         | The text below                                                                                                                                 |
+
+**Privacy policy** (paste without the `>` marks):
+
+> Dotquad's extension sends nothing until you use it. It has no content scripts, so it can't read the pages you visit, and no analytics or tracking.
+>
+> Opening it looks up your own IP address, so our server sees your address, as with any request. We keep that answer in memory for 10 minutes so the next look is fast, then drop it. "Grade this site" sends the current tab's domain, only when you press it.
+>
+> The right-click menu sends the link or the text you chose, only when you choose "Is this link safe?" or "Look up on Dotquad". CIDR ranges are worked out in your browser and never sent.
+>
+> "Grade on the icon" is off unless you turn it on. Then the extension sends the domain of each site you open, and has your browser's permission to read your tabs' addresses. Turning it off removes that permission.
+>
+> Answers are cached in your browser's session storage (five minutes for lookups, a day for grades) and cleared when the browser closes. An API key, if you add one, stays in your browser.
+>
+> On our side, these requests are handled like the website's tools: your address counts toward a per-minute limit held in memory, and nothing you look up is logged.
+>
+> The full policy: https://dotquad.app/privacy/#extension
+
+It's the extension section of the site's [privacy policy](https://dotquad.app/privacy/#extension). If that changes, change this too.
+
+**Notes for reviewers:**
+
+> No sign-in or test account is needed; every feature works without an API key. To test: open the toolbar popup on any site and click "Grade this site"; right-click any link and choose "Is this link safe?"; select an IP address on a page, right-click it and choose "Look up on Dotquad". Results open in the sidebar. The extension only talks to https://api.dotquad.app and sends nothing until the user opens the popup or uses the right-click menu. The optional `tabs` permission is requested only when the user turns on "Grade on the icon" in Settings.
+>
+> To build from the source package: Node 22 or later, then `npm ci` and `npm run zip:firefox`. The output is in `.output/`.
+
+Then click "Submit Version".
+
+### Edit product page
+
+After submitting, open the add-on's "Edit Product Page" and add what the first form didn't ask for:
+
+| Field       | Value                                                                                                                        |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| Icon        | Taken from the manifest. Upload [store-icon-128.png](store-icon-128.png) only if it doesn't show                             |
+| Screenshots | [screenshots/](screenshots/), all five, in Chrome's order, with the captions below. No promo tiles: Firefox doesn't use them |
+| Homepage    | `https://dotquad.app/apps/`                                                                                                  |
+| Tags        | Optional. Pick the security and privacy ones from Mozilla's list                                                             |
+
+Screenshot captions:
+
+1. Your IP address, and a grade for the site you're on.
+2. "Is this link safe?" finds the warning signs in a link before you open it.
+3. Look up any IP address you select on a page.
+4. Subnet math for a selected CIDR range, worked out in your browser.
+5. Settings, with "Grade on the icon" and what it sends.
+
+### Data collection
+
+The Firefox manifest declares `browsingActivity` as required (`data_collection_permissions`), so Firefox asks for consent at install. That's why it needs Firefox 140 or later. The declaration, the privacy policy above and Chrome's and Edge's "Web history" answer must say the same thing. If one changes, change all of them.
